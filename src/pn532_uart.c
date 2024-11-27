@@ -137,7 +137,7 @@ esp_err_t pn532_uart_init(pn532_t* pn532, const pn532_uart_config_t* config) {
     return ESP_OK;
 
 ERR:
-    free(pn532);
+//    free(pn532);
     return err;
 }
 

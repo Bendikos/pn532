@@ -10,11 +10,17 @@
 #define PN532_DELAY_DEFAULT (500 / portTICK_PERIOD_MS)
 #define PN532_DELAY(ms) (ms / portTICK_PERIOD_MS)
 
+typedef struct {
+    spi_host_device_t   bus;
+    spi_device_handle_t dev;
+} pn532_spi_handle_t;
+
 typedef struct pn532_t {
     pn532_protocol_t protocol;
     union {
         uart_port_t uart_port;
-        // todo i2c/spi specifics
+        pn532_spi_handle_t spi;
+        // todo i2c specifics
     };
     SemaphoreHandle_t mutex;
     esp_err_t (*write_command)(struct pn532_t* pn532, uint8_t* command, uint8_t command_len);

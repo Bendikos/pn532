@@ -4,6 +4,7 @@
 
 #include <driver/gpio.h>
 #include <driver/uart.h>
+#include <driver/spi_master.h>
 
 #define PN532_PREAMBLE 0x00
 #define PN532_STARTCODE1 0x00
@@ -88,7 +89,12 @@ typedef struct {
  * 
  */
 typedef struct {
-    // todo
+    gpio_num_t miso;
+    gpio_num_t mosi;
+    gpio_num_t clk;
+    gpio_num_t cs;
+    int clock_speed_hz;
+    spi_host_device_t bus;
 } pn532_spi_config_t;
 
 /**

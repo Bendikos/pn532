@@ -13,18 +13,20 @@ static uint8_t pn532_ack[] = {0x00, 0x00, 0xFF, 0x00, 0xFF, 0x00};
 static uint8_t pn532_firmwareversion[] = {0x00, 0x00, 0xFF, 0x06, 0xFA, 0xD5};
 
 extern esp_err_t pn532_uart_init(pn532_t* pn532, const pn532_uart_config_t* config);
+extern esp_err_t pn532_spi_init(pn532_t* pn532, const pn532_spi_config_t* config);
 
-esp_err_t pn532_init(pn532_handle_t* pn532_handle, const pn532_config_t* config) {
-    if(!pn532_handle || !config) {
+
+esp_err_t pn532_init(pn532_handle_t* pn532, const pn532_config_t* config) {
+    if(!pn532 || !config) {
         return ESP_ERR_INVALID_ARG;
     }
-
+/*
     pn532_t* pn532 = (pn532_t*) malloc(sizeof(pn532_t));
     if(!pn532) {
         return ESP_ERR_NO_MEM;
     }
     memset(pn532, 0, sizeof(pn532_t));
-
+*/
     esp_err_t err = ESP_OK;
     switch(config->protocol) {
         case PN532_UART_PROTOCOL:
@@ -34,7 +36,7 @@ esp_err_t pn532_init(pn532_handle_t* pn532_handle, const pn532_config_t* config)
             // todo
             break;
         case PN532_SPI_PROTOCOL:
-            // todo
+            err = pn532_spi_init(pn532, &config->spi);
             break;
         default:
             ESP_LOGE(TAG, "unknown protocol");
@@ -47,7 +49,7 @@ esp_err_t pn532_init(pn532_handle_t* pn532_handle, const pn532_config_t* config)
         return err;
     }
 
-    *pn532_handle = pn532;
+    //*pn532_handle = pn532;
     return ESP_OK;
 }
 
