@@ -1,3 +1,0 @@
-dependencies:
-  pn532:
-    git: https://github.com/felipegtralli/pn532.git

@@ -1,8 +1,11 @@
 # PN532 Component for ESP-IDF
 This project provides an ESP-IDF library for interfacing with the PN532 NFC/RFID controller.  
-Note: Currently, this library only supports UART protocol. Support for I2C and SPI may be added in the future.
+~~Note: Currently, this library only supports UART protocol. Support for I2C and SPI may be added in the future.~~
+
+ Support for I2C, SPI, UART
 
 ## How to Use
+
 ### Hardware
 - **ESP32 Board**: Any ESP32-based development board.
 - **PN532 NFC/RFID Controller**: Elechouse's PN532 Module V3 was used for testing and development.
@@ -23,7 +26,7 @@ Connect the PN532 module to the ESP32 board as follows:
 2. Clone the Repository
    ```sh
     git clone https://github.com/felipegtralli/pn532.git
-    ```
+   ```
 3. Add PN532 as a Component<br>
  Include the PN532 library in your ESP-IDF project by placing it in the components directory or by linking it via an idf_component.yml.
 4. Reconfigure
